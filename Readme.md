@@ -8,8 +8,9 @@ Aplicación web para la administración de usuarios y datos de la red social [ro
 ## Iniciar la aplicación
 Descargar o clonar el proyecto y dentro del directorio ejecutar los siguientes comandos:
 
-A través de npm descargar todas las dependencias
+A través de npm actualizar y descargar todas las dependencias
 ```bash
+npm update
 npm install
 ```
 Luego iniciar la aplicación Angular con:
