@@ -1,0 +1,43 @@
+<div [@routerTransition]>
+        <app-page-header [heading]="'Desafíos'" [icon]="'fa-table'"></app-page-header>
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="card mb-3">
+                    <div class="card-header">Desafíos
+                        <div class="pull-right">
+                            <a routerLink="add-challenge" class="btn btn-success btn-sm"><i class="fa fa-plus-circle"></i>Añadir</a>
+                       </div>
+                    </div>
+                    <table class="card-body table table-hover">
+                        <thead>
+                            <tr>
+                                <th>Nº</th>
+                                <th>título</th>
+                                <th>Texto</th>
+                                <th>Fecha</th>
+                                <th>Me gusta</th>
+                                <th>Comentarios</th>
+                                <th>Público</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let challenge of challenges; let i = index">
+                                <th scope="row">{{ i+1 }}</th>
+                                <td>{{ challenge.title }} </td>
+                                <td>{{ challenge.description }}</td>
+                                <td>{{ challenge.challenge_date | date:'short' }}</td>
+                                <td>{{ challenge.likes }}</td>
+                                <td>{{ challenge.comments }}</td>
+                                <td>{{ challenge.public }}</td>
+                                <td>
+                                    <a [routerLink]="['edit-challenge', challenge.id]" class="btn btn-sm btn-primary"><i class="fa fa-pencil"></i></a>
+                                    <button class="btn btn-sm btn-danger" (click)="delete(challenge.id)"><i class="fa fa-trash"></i></button>
+                                </td>
+                              </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>

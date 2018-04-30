@@ -1,0 +1,40 @@
+<div [@routerTransition]>
+    <app-page-header [heading]="'Soluciones'" [icon]="'fa-table'"></app-page-header>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card mb-3">
+                <div class="card-header">Soluciones</div>
+                <table class="card-body table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Nº</th>
+                            <th>Equipo</th>
+                            <th>Reto</th>
+                            <th>Title</th>
+                            <th>Descripcion</th>
+                            <th>Fecha</th>
+                            <th>Solución</th>
+                            <!-- <th>Documento</th>
+                            <th>Vídeo</th> -->
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let sol of sols; let i = index">
+                            <th scope="row">{{ i+1 }}</th>
+                            <ng-container *ngFor="let team of teams">
+                                <td *ngIf="sol.id_team==team.id">{{ team.name }}</td>
+                            </ng-container>
+                            <td>{{ sol.challengeNumber }}</td>
+                            <td>{{ sol.title }}</td>
+                            <td>{{ sol.description }}</td>
+                            <td>{{ sol.solution_date | date:'short' }}</td>
+                            <td *ngIf="sol.imageUrl"><a  [href]="sol.imageUrl">Ver imagen</a></td>
+                            <td *ngIf="sol.documentUrl"><a [href]="sol.documentUrl">Ver documento</a></td>
+                            <td *ngIf="sol.videoUrl"><a [href]="sol.videoUrl">Ver vídeo</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

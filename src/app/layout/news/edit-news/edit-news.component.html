@@ -1,0 +1,95 @@
+<div [@routerTransition]>
+        <app-page-header [heading]="'Editar Noticia'" [icon]="'fa-edit'"></app-page-header>
+    <div class="row">
+        <div class="col-lg-12">
+            <form role="form">
+                <fieldset class="form-group">
+                    <label for="title">Título</label>
+                    <input type="text" class="form-control" id="title" name="title" required [(ngModel)]="newsItems.title">
+                </fieldset>
+
+                <fieldset class="form-group">
+                    <label for="text">Texto</label>
+                    <textarea class="form-control" name="description" id="description" [(ngModel)]="newsItems.description" required>Texto</textarea>
+                </fieldset>
+
+                <div class="checkbox">
+                        <label>
+                            <input name="public" type="checkbox" [checked]="newsItems.public" (change)="newsItems.public = !newsItems.public" > Público
+                        </label>
+                </div>
+
+                <div class="form-group">
+                    <div>
+                        <label>Subir archivo:</label>
+                    </div>
+
+                    <div class="radio">
+                        <label>
+                                <input id="video" name="video" ng-control="options" type="radio" [value]="1"  [(ngModel)]="options" >Vídeo
+                        </label>
+                    </div>
+
+                    <fieldset class="form-group" *ngIf="options==1">
+                        <input type="text" class="form-control" id="videoUrl" name="videoUrl" required [(ngModel)]="newsItems.videoUrl">
+                    </fieldset>
+
+                    <div class="radio">
+                        <label>
+                                <input id="image" name="image" ng-control="options" type="radio" [value]="2" [(ngModel)]="options" > Imágen
+                        </label>
+                    </div>
+
+
+                    <div class="dropzone" *ngIf="options==2"
+                        dropZone
+                        (hovered)="toggleHover($event)"
+                        (dropped)="startUpload($event)"
+                        [class.hovering]="isHovering">
+
+                        <h3>Subir Imagen</h3>
+                        <div class="file">
+                        <label class="file-label">
+                            <input class="file-input" type="file" (change)="startUpload($event.target.files)">
+                            <span class="file-cta">
+                                <span class="file-icon">
+                                <i class="fa fa-upload"></i>
+                                </span>
+                                <span class="file-label">
+                                or choose a file…
+                                </span>
+                            </span>
+                        </label>
+                        </div>
+                    </div>
+
+                    <div *ngIf="percentage | async as pct">
+                        <progress class="progress-bar"
+                        [value]="pct"
+                        max="100">
+                        </progress>
+                        {{ pct | number }}%
+                    </div>
+
+                    <div *ngIf="snapshot | async as snap">
+                        {{ snap.bytesTransferred | fileSize }} of {{ snap.totalBytes | fileSize }}
+                        <button (click)="task.pause()" class="btn btn-warning" [disabled]="!isActive(snap)">Pause</button>
+                        <button (click)="task.cancel()" class="btn btn-danger" [disabled]="!isActive(snap)">Cancel</button>
+                        <button (click)="task.resume()" class="btn btn-info"   [disabled]="!(snap?.state === 'paused')">Resume</button>
+                    </div>
+
+                    <div *ngIf="newsItems.imageUrl" class="box">
+                        <h3>Resultados!</h3>
+                        <div class="thumbnail">
+                            <img class="img-responsive img-thumbnail" [src]="newsItems.imageUrl"><br>
+                            <a class="btn btn-info" [href]="newsItems.imageUrl" target="_blank" rel="noopener">Descárgame!</a>
+                            <a class="btn btn-danger" (click)="deleteFileStorage()">Eliminar</a>
+                        </div>
+                    </div>
+                </div>
+                <a><button class="btn btn-success" (click)="editNews()"><i class="fa fa-plus-circle"></i><span> Editar</span></button></a>
+                <a routerLink="/news"><button class="btn btn-info"><i class="fa fa-arrow-left"></i><span>Volver</span></button></a>
+            </form>
+        </div>
+    </div>
+</div>

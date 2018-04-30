@@ -1,0 +1,45 @@
+<div [@routerTransition]>
+    <app-page-header [heading]="'Participantes'" [icon]="'fa-table'"></app-page-header>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card mb-3">
+                <div class="card-header">Participantes
+                    <div class="pull-right">
+                        <a routerLink="add-member" class="btn btn-success btn-sm"><i class="fa fa-plus-circle"></i> Añadir</a>
+                    </div>
+                </div>
+                <table class="card-body table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Nº</th>
+                            <th>Nombre</th>
+                            <th>Colegio</th>
+                            <th>Equipo</th>
+                            <th>Celular</th>
+                            <th>Email</th>
+                            <th>Tipo</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let member of members; let i = index">
+                            <th scope="row">{{ i+1 }}</th>
+                            <td>{{ member.name }} {{ member.surname }}</td>
+                            <td>{{ member.institution }}</td>
+                            <ng-container *ngFor="let team of teams">
+                                <td *ngIf="member.id_team.id==team.id">{{ team.name }}</td>
+                            </ng-container>
+                            <td>{{ member.cellphone }}</td>
+                            <td>{{ member.email }}</td>
+                            <td>{{ member.type }}</td>
+                            <td>
+                                <a [routerLink]="['edit-member', member.id]" class="btn btn-sm btn-primary"><i class="fa fa-pencil"></i></a>
+                                <button class="btn btn-sm btn-danger" (click)="delete(member.id)"><i class="fa fa-trash"></i></button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

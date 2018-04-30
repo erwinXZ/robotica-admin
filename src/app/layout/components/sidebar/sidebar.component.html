@@ -1,0 +1,25 @@
+<nav class="sidebar" [ngClass]="{sidebarPushRight: isActive}">
+    <div class="list-group">
+        <a routerLink="/dashboard" [routerLinkActive]="['router-link-active']" class="list-group-item">
+            <i class="fa fa-fw fa-dashboard"></i>&nbsp;{{ 'Principal' | translate }}
+        </a>
+        <a [routerLink]="['/news']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+            <i class="fa fa-newspaper-o"></i>&nbsp;{{ 'Noticias' | translate }}
+        </a>
+        <!-- <a [routerLink]="['/challenges']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+            <i class="fa fa-fw fa-table"></i>&nbsp;{{ 'Challenges' | translate }}
+        </a> -->
+        <a [routerLink]="['/notifications']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+            <i class="fa fa-bell"></i>&nbsp;{{ 'Notificaciones' | translate }}
+        </a>
+        <a [routerLink]="['/teams']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+            <i class="fa fa-users"></i>&nbsp;{{ 'Equipos' | translate }}
+        </a>
+        <a [routerLink]="['/members']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+            <i class="fa fa-address-card-o"></i>&nbsp;{{ 'Miembros' | translate }}
+        </a>
+        <a [routerLink]="['/solutions']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+            <i class="fa fa-lightbulb-o"></i>&nbsp;{{ 'Soluciones' | translate }}
+        </a>
+    </div>
+</nav>

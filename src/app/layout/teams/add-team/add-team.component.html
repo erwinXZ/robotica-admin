@@ -1,0 +1,31 @@
+<div [@routerTransition]>
+    <app-page-header [heading]="'Añadir Equipo'" [icon]="'fa-edit'"></app-page-header>
+<div class="row">
+    <div class="col-lg-12">
+        <form role="form">
+            <fieldset class="form-group">
+                <label for="name">Nombre</label>
+                <input type="text" class="form-control" id="name" name="name" required [(ngModel)]="teamItems.title">
+            </fieldset>
+
+            <fieldset class="form-group">
+                <label for="city">Ciudad</label>
+                <input type="text" class="form-control" id="city" name="city" required [(ngModel)]="teamItems.city">
+            </fieldset>
+
+            <fieldset class="form-group">
+                <label for="text">Departamento</label>
+                <input type="text" class="form-control" id="department" name="department" required [(ngModel)]="teamItems.department">
+            </fieldset>
+
+            <fieldset class="form-group">
+                    <label for="score">Puntaje</label>
+                    <input type="text" class="form-control" id="score" name="score" required [(ngModel)]="teamItems.score">
+                </fieldset>
+
+            <a><button class="btn btn-success" (click)="addTeam()"><i class="fa fa-plus-circle"></i><span> Añadir</span></button></a>
+            <a routerLink="/teams"><button class="btn btn-info"><i class="fa fa-arrow-left"></i><span>Volver</span></button></a>
+        </form>
+    </div>
+</div>
+</div>

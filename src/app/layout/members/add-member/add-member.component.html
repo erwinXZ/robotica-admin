@@ -1,0 +1,41 @@
+<div [@routerTransition]>
+        <app-page-header [heading]="'Añadir Miembro'" [icon]="'fa-edit'"></app-page-header>
+    <div class="row">
+        <div class="col-lg-12">
+            <form role="form">
+                <fieldset class="form-group">
+                    <label for="name">Nombre(s)</label>
+                    <input type="text" class="form-control" id="name" name="name" required [(ngModel)]="memberItems.name">
+                </fieldset>
+
+                <fieldset class="form-group">
+                    <label for="surname">Apellido(s)</label>
+                    <input type="text" class="form-control" id="surname" name="surname" required [(ngModel)]="memberItems.surname">
+                </fieldset>
+
+                <fieldset class="form-group">
+                    <label for="institution">Colegio</label>
+                    <input type="text" class="form-control" id="institution" name="institution" required [(ngModel)]="memberItems.institution">
+                </fieldset>
+
+                <fieldset class="form-group">
+                    <label for="cellphone">Celular</label>
+                    <input type="text" class="form-control" id="cellphone" name="cellphone" required [(ngModel)]="memberItems.cellphone">
+                </fieldset>
+
+                <fieldset class="form-group">
+                    <label for="email">Email</label>
+                    <input type="text" class="form-control" id="email" name="email" required [(ngModel)]="memberItems.email">
+                </fieldset>
+
+                <fieldset class="form-group">
+                    <label for="type">Tipo</label>
+                    <input type="text" class="form-control" id="type" name="type" required [(ngModel)]="memberItems.type">
+                </fieldset>
+
+                <a><button class="btn btn-success" (click)="addTeam()"><i class="fa fa-plus-circle"></i><span> Añadir</span></button></a>
+                <a routerLink="/members"><button class="btn btn-info"><i class="fa fa-arrow-left"></i><span>Volver</span></button></a>
+            </form>
+        </div>
+    </div>
+    </div>

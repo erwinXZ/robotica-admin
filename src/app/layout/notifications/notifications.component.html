@@ -1,0 +1,37 @@
+<div [@routerTransition]>
+    <app-page-header [heading]="'Notificaciones'" [icon]="'fa-table'"></app-page-header>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card mb-3">
+                <div class="card-header">Notificaciones
+                    <div class="pull-right">
+                        <a routerLink="add-notification" class="btn btn-success btn-sm"><i class="fa fa-plus-circle"></i> Añadir</a>
+                   </div>
+                </div>
+                <table class="card-body table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Nº</th>
+                            <th>Texto</th>
+                            <th>Tipo</th>
+                            <th>Fecha</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let not of nots; let i = index">
+                            <th scope="row">{{ i+1 }}</th>
+                            <td>{{ not.text }} </td>
+                            <td>{{ not.type }}</td>
+                            <td>{{ not.notification_date | date:'short' }}</td>
+                            <td>
+                                <a [routerLink]="['edit-notification', not.id]" class="btn btn-sm btn-primary"><i class="fa fa-pencil"></i></a>
+                                <button class="btn btn-sm btn-danger" (click)="delete(not.id)"><i class="fa fa-trash"></i></button>
+                              </td>
+                          </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

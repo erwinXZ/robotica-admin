@@ -1,0 +1,135 @@
+<div [@routerTransition]>
+    <app-page-header [heading]="'Añadir Desafío'" [icon]="'fa-edit'"></app-page-header>
+<div class="row">
+    <div class="col-lg-12">
+        <form role="form">
+            <fieldset class="form-group">
+                <label for="title">Título</label>
+                <input type="text" class="form-control" id="title" name="title" required [(ngModel)]="challengeItems.title">
+            </fieldset>
+
+            <fieldset class="form-group">
+                <label for="text">Texto</label>
+                <textarea class="form-control" name="description" id="description" [(ngModel)]="challengeItems.description" required>Texto</textarea>
+            </fieldset>
+
+            <div class="checkbox">
+                <label>
+                    <input name="public" type="checkbox" [checked]="challengeItems.public" (change)="challengeItems.public = !challengeItems.public" checked> Público
+                </label>
+            </div>
+
+            <div class="form-group">
+                <div>
+                    <label>Subir archivos:</label>
+                </div>
+
+                <fieldset class="form-group">
+                    <label for="title">Vídeo</label>
+                    <input type="text" class="form-control" id="video" name="video" required [(ngModel)]="challengeItems.videoUrl">
+                </fieldset>
+
+                <div>
+                    <label>Imágen:</label>
+                </div>
+
+                <div class="dropzone"
+                dropZone
+                (hovered)="toggleHover($event)"
+                (dropped)="startUpload($event)"
+                [class.hovering]="isHovering">
+
+                    <h3>Subir Imagen</h3>
+                    <div class="file">
+                        <label class="file-label">
+                            <input class="file-input" type="file" (change)="startUploadImage($event.target.files)">
+                            <span class="file-cta">
+                                <span class="file-icon">
+                                    <i class="fa fa-upload"></i>
+                                </span>
+                                <span class="file-label">
+                                    o selecciona un archivo…
+                                </span>
+                            </span>
+                        </label>
+                    </div>
+                </div>
+
+                <div *ngIf="percentage | async as pct">
+                    <progress class="progress-bar"
+                        [value]="pct"
+                        max="100">
+                    </progress>
+                    {{ pct | number }}%
+                </div>
+
+                <div *ngIf="snapshot | async as snap">
+                    {{ snap.bytesTransferred | fileSize }} of {{ snap.totalBytes | fileSize }}
+                    <button (click)="task.pause()" class="btn btn-warning" [disabled]="!isActive(snap)">Pause</button>
+                    <button (click)="task.cancel()" class="btn btn-danger" [disabled]="!isActive(snap)">Cancel</button>
+                    <button (click)="task.resume()" class="btn btn-info"   [disabled]="!(snap?.state === 'paused')">Resume</button>
+                    <div *ngIf="downloadURL | async as url" class="box">
+                        <h3>Resultados!</h3>
+                        <div class="thumbnail">
+                            <img class="img-responsive img-thumbnail" [src]="url"><br>
+                            <a class="btn btn-info" [href]="url" target="_blank" rel="noopener">Descárgame!</a>
+                            <a class="btn btn-danger" (click)="deleteImageFileStorage()">Eliminar</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <label>Documento:</label>
+                </div>
+
+                <div class="dropzone"
+                dropZone
+                (hovered)="toggleHover($event)"
+                (dropped)="startUpload($event)"
+                [class.hovering]="isHovering">
+
+                    <h3>Subir Documento</h3>
+                    <div class="file">
+                        <label class="file-label">
+                            <input class="file-input" type="file" (change)="startUploadImage($event.target.files)">
+                            <span class="file-cta">
+                                <span class="file-icon">
+                                    <i class="fa fa-upload"></i>
+                                </span>
+                                <span class="file-label">
+                                    or selecciona un archivo…
+                                </span>
+                            </span>
+                        </label>
+                    </div>
+                </div>
+
+                <div *ngIf="percentage | async as pct">
+                    <progress class="progress-bar"
+                        [value]="pct"
+                        max="100">
+                    </progress>
+                    {{ pct | number }}%
+                </div>
+
+                <div *ngIf="snapshot | async as snap">
+                    {{ snap.bytesTransferred | fileSize }} of {{ snap.totalBytes | fileSize }}
+                    <button (click)="task.pause()" class="btn btn-warning" [disabled]="!isActive(snap)">Pause</button>
+                    <button (click)="task.cancel()" class="btn btn-danger" [disabled]="!isActive(snap)">Cancel</button>
+                    <button (click)="task.resume()" class="btn btn-info"   [disabled]="!(snap?.state === 'paused')">Resume</button>
+                    <div *ngIf="downloadDocumentURL | async as url" class="box">
+                        <h3>Resultados!</h3>
+                        <div class="thumbnail">
+                            <img class="img-responsive img-thumbnail" [src]="url"><br>
+                            <a class="btn btn-info" [href]="url" target="_blank" rel="noopener">Descárgame!</a>
+                            <a class="btn btn-danger" (click)="deleteImageFileStorage()">Eliminar</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <a><button class="btn btn-success" (click)="addChallenge()"><i class="fa fa-plus-circle"></i><span> Añadir</span></button></a>
+            <a routerLink="/challenges"><button class="btn btn-info"><i class="fa fa-arrow-left"></i><span>Volver</span></button></a>
+        </form>
+    </div>
+</div>
+</div>

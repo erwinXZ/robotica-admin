@@ -1,0 +1,38 @@
+<div [@routerTransition]>
+    <h2 class="text-muted">Principal</h2>
+    <div class="row">
+        <div class="col-md-12">
+            <ngb-carousel>
+                <ng-template ngbSlide *ngFor="let slider of sliders">
+                    <img class="img-fluid mx-auto d-block" [src]="slider.imagePath" alt="Random first slide" width="100%">
+                    <div class="carousel-caption">
+                        <h3>{{slider.label}}</h3>
+                        <p>{{slider.text}}</p>
+                    </div>
+                </ng-template>
+            </ngb-carousel>
+        </div>
+    </div>
+    <hr>
+    <div class="row">
+        <div class="col-xl-3 col-lg-6">
+            <app-stat [bgClass]="'primary'" [icon]="'fa fa-newspaper-o'" [count]="publicationsSize" [label]="'Noticias'" ></app-stat>
+        </div>
+        <div class="col-xl-3 col-lg-6">
+            <app-stat [bgClass]="'warning'" [icon]="'fa fa-bell'" [count]="notificationsSize" [label]="'Notificación'" ></app-stat>
+        </div>
+        <div class="col-xl-3 col-lg-6">
+            <app-stat [bgClass]="'success'" [icon]="'fa fa-users'" [count]="teamsSize" [label]="'Equipos'" ></app-stat>
+        </div>
+        <div class="col-xl-3 col-lg-6">
+            <app-stat [bgClass]="'danger'" [icon]="'fa fa-address-card-o'" [count]="membersSize" [label]="'Miembros'"></app-stat>
+        </div>
+    </div>
+    <hr>
+    <div class="row">
+        <div class="col-xl-3 col-lg-6">
+            <app-stat [bgClass]="'info'" [icon]="'fa fa-lightbulb-o'" [count]="solutionsSize" [label]="'Soluciones'"></app-stat>
+        </div>
+    </div>
+    <hr />
+</div>

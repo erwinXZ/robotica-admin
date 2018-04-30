@@ -1,0 +1,21 @@
+<div [@routerTransition]>
+    <app-page-header [heading]="'Editar Notificación'" [icon]="'fa-edit'"></app-page-header>
+    <div class="row">
+        <div class="col-lg-12">
+            <form role="form">
+                <fieldset class="form-group">
+                    <label for="text">Texto</label>
+                    <input type="text" class="form-control" id="text" name="text" required [(ngModel)]="notsItems.text">
+                </fieldset>
+
+                <fieldset class="form-group">
+                    <label for="type">Tipo</label>
+                    <input type="text" class="form-control" id="type" name="type" required [(ngModel)]="notsItems.type">
+                </fieldset>
+
+                <a><button class="btn btn-success" (click)="editNotification()"><i class="fa fa-plus-circle"></i><span> Editar</span></button></a>
+                <a routerLink="/notifications"><button class="btn btn-info"><i class="fa fa-arrow-left"></i><span> Volver</span></button></a>
+            </form>
+        </div>
+    </div>
+</div>
